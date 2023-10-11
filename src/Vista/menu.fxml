@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.MenuController">
+   <children>
+      <Pane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #fff5c4;">
+         <children>
+            <Label alignment="CENTER" layoutX="143.0" layoutY="144.0" prefHeight="56.0" prefWidth="314.0" text="¿A que desea acceder?" textFill="#73501a">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="135.0" layoutY="48.0" prefHeight="75.0" prefWidth="331.0" text="Puesto Riko's" textAlignment="CENTER" textFill="#b90909">
+               <font>
+                  <Font name="Monotype Corsiva" size="55.0" />
+               </font>
+            </Label>
+            <Button fx:id="pedidos" layoutX="78.0" layoutY="210.0" mnemonicParsing="false" onAction="#inpedidos" prefHeight="32.0" prefWidth="92.0" text="Pedidos" />
+            <Button fx:id="plato" layoutX="440.0" layoutY="210.0" mnemonicParsing="false" onAction="#inplato" prefHeight="32.0" prefWidth="92.0" text="Plato" />
+            <Button fx:id="cerrar" layoutX="254.0" layoutY="298.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="32.0" prefWidth="92.0" text="Cerrar Sesion" />
+            <Button fx:id="clientes" layoutX="78.0" layoutY="266.0" mnemonicParsing="false" onAction="#inclientes" prefHeight="32.0" prefWidth="92.0" text="Clientes" />
+            <Button fx:id="ingredientes" layoutX="440.0" layoutY="266.0" mnemonicParsing="false" onAction="#ininventario" prefHeight="32.0" prefWidth="92.0" text="Inventario" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
