@@ -14,6 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -46,10 +47,13 @@ public class FXMLDocument implements Initializable {
 
     @FXML
     private void ingresar(ActionEvent event) {
+          Object evt = event.getSource();
+          Node ventana = (Node) event.getSource();
+          Stage stage = (Stage) ventana.getScene().getWindow();
           
          if( contra.getText().equals(contraseña)){
            mostrarVentana("Interfaz","/Vista/menu.fxml");
-           
+           stage.close();
          }
          else{
             Alert error=new Alert(Alert.AlertType.ERROR);

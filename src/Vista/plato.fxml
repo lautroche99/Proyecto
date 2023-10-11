@@ -41,17 +41,18 @@
                   <Font size="25.0" />
                </font>
             </Label>
+            <Button fx:id="btnAgregarIngredientes" disable="true" layoutX="571.0" layoutY="19.0" mnemonicParsing="false" onAction="#inAgregarIngredientes" text="Agregar Ingredientes" />
          </children>
       </Pane>
-      <Pane layoutX="34.0" layoutY="33.0" prefHeight="294.0" prefWidth="727.0" style="-fx-border-color: black;">
+      <Pane layoutX="36.0" layoutY="21.0" prefHeight="294.0" prefWidth="749.0" style="-fx-border-color: black;">
          <children>
             <TextField fx:id="Buscar" layoutX="21.0" layoutY="14.0" onKeyReleased="#buscarplato" promptText="Buscar..." style="-fx-border-color: black; -fx-border-radius: 10;" />
-            <TableView fx:id="table" layoutX="7.0" layoutY="61.0" onMouseClicked="#MostrarFilas" prefHeight="227.0" prefWidth="707.0">
+            <TableView fx:id="table" layoutX="7.0" layoutY="61.0" onMouseClicked="#MostrarFilas" prefHeight="227.0" prefWidth="725.0">
               <columns>
                 <TableColumn fx:id="columCod" prefWidth="90.0" text="Código" />
-                <TableColumn fx:id="columNom" prefWidth="172.0" text="Nombres" />
-                  <TableColumn fx:id="columprecio" prefWidth="105.0" text="Precio" />
-                  <TableColumn fx:id="columCantidad" prefWidth="132.0" text="Cantidad" />
+                <TableColumn fx:id="columNom" prefWidth="272.8000030517578" text="Nombres" />
+                  <TableColumn fx:id="columprecio" prefWidth="196.0" text="Precio" />
+                  <TableColumn fx:id="columCantidad" prefWidth="167.99993896484375" text="Cantidad" />
               </columns>
             </TableView>
             <Label layoutX="305.0" layoutY="9.0" prefHeight="17.0" prefWidth="78.0" text="Plato" textFill="#3d6b4c">
@@ -61,15 +62,19 @@
             </Label>
          </children>
       </Pane>
-      <Pane layoutX="39.0" layoutY="333.0" prefHeight="36.0" prefWidth="721.0" style="-fx-border-color: black;">
+      <Pane layoutX="42.0" layoutY="324.0" prefHeight="103.0" prefWidth="738.0" style="-fx-border-color: black;">
          <children>
-            <Button fx:id="btnNuevo" layoutX="14.0" layoutY="6.0" mnemonicParsing="false" onAction="#nuevo" text="Nuevo" />
-            <Button fx:id="btnModificar" disable="true" layoutX="90.0" layoutY="6.0" mnemonicParsing="false" onAction="#modificar" text="Modificar" />
-            <Button fx:id="btnEliminar" disable="true" layoutX="182.0" layoutY="6.0" mnemonicParsing="false" onAction="#eliminar" text="Eliminar" />
-            <Button fx:id="btnGuardar" disable="true" layoutX="268.0" layoutY="6.0" mnemonicParsing="false" onAction="#guardar" text="Guardar" />
-            <Button fx:id="btnCancelar" disable="true" layoutX="351.0" layoutY="6.0" mnemonicParsing="false" onAction="#cancelar" text="Cancelar" />
+            <Button fx:id="btnNuevo" layoutX="20.0" layoutY="60.0" mnemonicParsing="false" onAction="#nuevo" text="Nuevo" />
+            <Button fx:id="btnModificar" disable="true" layoutX="83.0" layoutY="60.0" mnemonicParsing="false" onAction="#modificar" text="Modificar" />
+            <Button fx:id="btnEliminar" disable="true" layoutX="160.0" layoutY="60.0" mnemonicParsing="false" onAction="#eliminar" text="Eliminar" />
+            <Button fx:id="btnGuardar" disable="true" layoutX="230.0" layoutY="60.0" mnemonicParsing="false" onAction="#guardar" text="Guardar" />
+            <Button fx:id="btnCancelar" disable="true" layoutX="307.0" layoutY="60.0" mnemonicParsing="false" onAction="#cancelar" text="Cancelar" />
+            <TextField fx:id="txtCodigo" disable="true" layoutX="9.0" layoutY="17.0" promptText="Código" />
+            <TextField fx:id="txtNombre" disable="true" layoutX="192.0" layoutY="17.0" promptText="Nombre" />
+            <TextField fx:id="txtPrecio" disable="true" layoutX="368.0" layoutY="17.0" promptText="Precio" />
+            <TextField fx:id="txtCantidad" disable="true" layoutX="538.0" layoutY="17.0" promptText="Cantidad" />
+            <Hyperlink fx:id="generarInforme" layoutX="435.0" layoutY="61.0" onAction="#reporte" text="Generar Informe" />
          </children>
       </Pane>
-      <Hyperlink fx:id="generarInforme" layoutX="47.0" layoutY="369.0" onAction="#reporte" text="Generar Informe" />
     </children>
 </AnchorPane>
