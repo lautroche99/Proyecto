@@ -38,6 +38,8 @@ public class MenuController implements Initializable {
     private Button clientes;
     @FXML
     private Button ingredientes;
+    @FXML
+    private Button factura;
 
     /**
      * Initializes the controller class.
@@ -82,6 +84,11 @@ public class MenuController implements Initializable {
     @FXML
     private void ininventario(ActionEvent event) {
          mostrarVentana("Interfaz","/Vista/ingredientes.fxml");
+    }
+
+    @FXML
+    private void infactura(ActionEvent event) {
+        mostrarVentana("Interfaz","/Vista/Factura.fxml");
     }
     
 }

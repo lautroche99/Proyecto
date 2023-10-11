@@ -8,7 +8,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="543.0" prefWidth="773.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.FacturaController">
+<AnchorPane id="AnchorPane" prefHeight="543.0" prefWidth="773.0" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.FacturaController">
    <children>
       <TableView layoutX="29.0" layoutY="134.0" prefHeight="313.0" prefWidth="709.0">
         <columns>
@@ -33,6 +33,6 @@
       <Label fx:id="etiFecha" layoutX="682.0" layoutY="32.0" text="00/00/0000" />
       <Label layoutX="709.0" layoutY="461.0" text="0" />
       <ComboBox fx:id="cmbPagos" layoutX="431.0" layoutY="27.0" onAction="#cargarcombo" prefHeight="26.0" prefWidth="113.0" promptText="Seleccionar" />
-      <Button layoutX="294.0" layoutY="77.0" mnemonicParsing="false" text="..." />
+      <Button fx:id="buscarCliente" layoutX="294.0" layoutY="77.0" mnemonicParsing="false" onAction="#inBuscarCliente" text="Buscar" />
    </children>
 </AnchorPane>
