@@ -5,16 +5,22 @@
  */
 package controlador;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -28,6 +34,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.converter.IntegerStringConverter;
 import modelo.plato;
@@ -75,14 +83,20 @@ public class platoController implements Initializable {
 
     ObservableList<plato> registroFill;
     ObservableList<plato> registros;
-    ObservableList<ingredientes> registrosIngredientes ;
+    ObservableList<ingredientes> registrosIngredientesDisponibles;
+    ObservableList<ingredientes> registrosIngredientes;
+    
     plato pla = new plato();
-    ArrayList<plato> plaList = new ArrayList<>();
     ingredientes ingre = new ingredientes(); 
+    
+    ArrayList<plato> plaList = new ArrayList<>();
     ArrayList<ingredientes> ingrelist = new ArrayList<>(); 
+    ArrayList<ingredientes> ingreDisponibleList = new ArrayList<>();
+    
     boolean modificar=false;
     private Button Pedidos;
     private Button inventplatos;
+    
     @FXML
     private TableColumn<ingredientes, String> columNomIngrediente;
     @FXML
@@ -95,8 +109,17 @@ public class platoController implements Initializable {
     private TableColumn<ingredientes, Integer> columPrecioIngredientes;
     @FXML
     private TableView<ingredientes> tableIngredientes;
-    @FXML
     private Button btnAgregarIngredientes;
+    @FXML
+    private TableColumn<ingredientes, Integer> columCodIngre;
+    @FXML
+    private TableColumn<ingredientes, String> columNombreIngre;
+    @FXML
+    private TableColumn<ingredientes, Integer> columPrecioIngre;
+    @FXML
+    private TableColumn<ingredientes, Integer> columCantidadIngre;
+    @FXML
+    private TableView<ingredientes> tableIngredientesDisponibles;
     /**?
      * Initializes the controller class.
      * @param url
@@ -104,8 +127,11 @@ public class platoController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        ingreDisponibleList = ingre.consultar();
+        //ingrelist=ingre.consultar();
         cargarDatos();
         cargarDatosIngredientesTabla();
+        cargarDatosIngredientesDisponibles();
     }    
 
     @FXML
@@ -148,6 +174,7 @@ public class platoController implements Initializable {
         txtCantidad.setDisable(false);
         txtNombre.setDisable(false);
         txtPrecio.setDisable(false);
+        btnAgregarIngredientes.setDisable(false);
         txtNombre.requestFocus();//pasar el foco al campo
     }
 
@@ -250,6 +277,7 @@ public class platoController implements Initializable {
         txtCantidad.setDisable(true);
         txtNombre.setDisable(true);
         txtCodigo.setDisable(true);
+        btnAgregarIngredientes.setDisable(true);
         limpiarTexto();
     }
 
@@ -297,9 +325,16 @@ public class platoController implements Initializable {
         tableIngredientes.setItems(registrosIngredientes);
         tableIngredientes.setEditable(true);
     }
-
-    @FXML
-    private void inAgregarIngredientes(ActionEvent event) {
+    
+    private void cargarDatosIngredientesDisponibles() {
+        
+        registrosIngredientesDisponibles = FXCollections.observableArrayList(ingreDisponibleList);
+        columCodIngre.setCellValueFactory(new PropertyValueFactory<>("Cod_ingre"));
+        columNombreIngre.setCellValueFactory(new PropertyValueFactory<>("nom_ingre"));
+        columPrecioIngre.setCellValueFactory(new PropertyValueFactory<>("precio_ingre"));
+        columCantidadIngre.setCellValueFactory(new PropertyValueFactory<>("Cant_ingre"));
+        //Agregamos a la tabla el registro que contiene la lista de objetos
+        tableIngredientesDisponibles.setItems(registrosIngredientesDisponibles);
     }
     
     public void recibirDatosIngredientes(ingredientes ingre){
@@ -308,4 +343,71 @@ public class platoController implements Initializable {
         cargarDatosIngredientesTabla();
     }
 
+    private void inAgregarIngredientes(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("/Vista/buscarIngrediente.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setTitle("buscarIngrediente");
+            stage.initModality(Modality.APPLICATION_MODAL);
+            //instanciamos el controlador de buscarCliente
+            buscarIngredienteController buscarControlador = fxmlLoader.getController();
+            //le enviamos el nombre del controlador a recibirDatos que se encuentra en el segundo formulario 
+            buscarControlador.recibirDatos(this);
+            stage.show();//mostramos el segundo formulari
+        } catch (IOException ex) {
+            Logger.getLogger(FacturaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    
+    @FXML
+    private void seleccionarIngredienteDisponible(MouseEvent event) {
+        if(tableIngredientesDisponibles.getSelectionModel().getSelectedItem() != null){
+           //evento del mouse para seleccionar el registro y cerrar
+            ingredientes ingre1 = tableIngredientesDisponibles.getSelectionModel().getSelectedItem();
+            agregaringrelist(ingre1);
+            quitaringreDisponibleList(ingre1);
+            cargarDatosIngredientesTabla();
+            cargarDatosIngredientesDisponibles(); 
+        }
+    }
+    
+    public void agregaringrelist(ingredientes ingre1){
+        ingrelist.add(ingre1);
+    }
+    
+    public void agregaringreDisponibleList(ingredientes ingre1){
+        ingreDisponibleList.add(ingre1);
+    }
+
+    public void quitaringreDisponibleList(ingredientes ingre1){
+        for (int j =0; j< ingreDisponibleList.size(); j++) {
+            if ( ingreDisponibleList.get(j).getCod_ingre() == ingre1.getCod_ingre() ) {
+                ingreDisponibleList.remove(j);
+            }
+        }
+    }
+    
+    public void quitaringreList(ingredientes ingre1){
+        for (int j =0; j< ingrelist.size(); j++) {
+            if ( ingrelist.get(j).getCod_ingre() == ingre1.getCod_ingre() ) {
+                ingrelist.remove(j);
+            }
+        }
+    }
+
+    @FXML
+    private void seleccionarIngredienteUtilizados(MouseEvent event) {
+        //evento del mouse para seleccionar el registro y cerrar
+        if(tableIngredientes.getSelectionModel().getSelectedItem() != null){
+            ingredientes ingre1 = tableIngredientes.getSelectionModel().getSelectedItem();
+            agregaringreDisponibleList(ingre1);
+            quitaringreList(ingre1);
+            cargarDatosIngredientesTabla();
+            cargarDatosIngredientesDisponibles();
+        }
+    }
 }

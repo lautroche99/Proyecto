@@ -16,6 +16,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -47,8 +48,8 @@ public class buscarIngredienteController implements Initializable {
     private TableColumn<ingredientes, Integer> columPrecioIngre;
     @FXML
     private TableColumn<ingredientes, Integer> columCantidadIngre;
-    @FXML
-    private TextField Buscar;
+    
+    platoController plato;
     
     ObservableList<ingredientes> registros;
     ingredientes ingre = new ingredientes();
@@ -59,41 +60,36 @@ public class buscarIngredienteController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        cargarDatos();
     }    
 
-    @FXML
-    private void MostrarFilas(MouseEvent event) {
-        ArrayList<ingredientes> ingreList=ingre.consultar();
-        System.out.println("Luego del consultar");
-        System.out.println(ingreList);
-        registros=FXCollections.observableArrayList(ingreList);
+    private void cargarDatos() {
+        ingreList=ingre.consultar();
+        registros = FXCollections.observableArrayList(ingreList);
         columCodIngre.setCellValueFactory(new PropertyValueFactory<>("Cod_ingre"));
         columNombreIngre.setCellValueFactory(new PropertyValueFactory<>("nom_ingre"));
         columPrecioIngre.setCellValueFactory(new PropertyValueFactory<>("precio_ingre"));
         columCantidadIngre.setCellValueFactory(new PropertyValueFactory<>("cant_ingre"));
         //Agregamos a la tabla el registro que contiene la lista de objetos
-        table.setItems(registros); 
+        table.setItems(registros);
     }
 
+
+    public void recibirDatos(platoController platocontrolador){
+        plato = platocontrolador;
+    }
+    
     @FXML
-    private void buscarIngrediente(KeyEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/Vista/buscarIngrediente.fxml"));
-            Scene scene = new Scene(fxmlLoader.load());
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.setTitle("Ingrediente");
-            stage.initModality(Modality.APPLICATION_MODAL);
-            //instanciamos el controlador de buscarCliente
-            buscarClienteController buscarControlador = fxmlLoader.getController();
-            //le enviamos el nombre del controlador a recibirDatos que se encuentra en el segundo formulario 
-            //buscarControlador.recibirDatos(this);
-            stage.show();//mostramos el segundo formulari
-        } catch (IOException ex) {
-            Logger.getLogger(FacturaController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    private void seleccionar(MouseEvent event) {
+        //evento del mouse para seleccionar el registro y cerrar
+        ingredientes ingre= table.getSelectionModel().getSelectedItem();
+        //obtenemos el valor de la cedula
+        //enviamos a la factura por medio del metodo recibirCodigo
+        plato.recibirDatosIngredientes(ingre);
+        //cerramos la ventana buscar alumno
+        Node ventana=(Node) event.getSource();
+        Stage stage=(Stage) ventana.getScene().getWindow();
+        stage.close();
     }
     
 }
