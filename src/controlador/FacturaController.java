@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -22,6 +23,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -60,18 +62,28 @@ public class FacturaController implements Initializable {
     @FXML
     private Label etiFecha;
     @FXML
-    private ComboBox<?> cmbPagos;
+    private ComboBox<String> cmbPagos;
     @FXML
     private Button buscarCliente;
     @FXML
     private TextField clienteNombreCompleto;
+    @FXML
+    private Label etiTotal;
+    @FXML
+    private TableView<?> tableDetalleFactura;
+    //private TableView<Detalle_pedido> tableDetalleFactura;
 
+    ArrayList<String> pagosList = new ArrayList<>(Arrays.asList("Efectivo", "Tarjeta"));
+    ArrayList<?> detallePedidoList = new ArrayList();
+    //ArrayList<Detalle_pedido> detallePedidoList = new ArrayList();
+    //Pedido pedido = new Pedido();
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         cargarFecha();
+        cargarCombo();
     }    
 
     @FXML
@@ -94,13 +106,13 @@ public class FacturaController implements Initializable {
     private void cargarcombo(ActionEvent event) {
     }
      
-//    
-//private void cargarCombo() {
-//    cmbPagos.getItems().clear();
-//    ArrayList<pagos> lista=p.consulta();
-//    for (pagos obj : lista) {
-//        cmbPagos.getItems().add(obj.getConcepto());
-//}
+
+    private void cargarCombo() {
+        cmbPagos.getItems().clear();
+        for (String obj : pagosList) {
+            cmbPagos.getItems().add(obj);
+        }
+    }
 
     @FXML
     private void inBuscarCliente(ActionEvent event) {
@@ -139,5 +151,8 @@ public class FacturaController implements Initializable {
         clienteNombreCompleto.setText(nombre + " " + apellido);
     }
 
+    public void cargarTabla(){
+        //etiTotal.setText(pedido.getTotal());
+    }
 }
 

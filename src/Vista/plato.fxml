@@ -10,21 +10,33 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="743.0" prefWidth="822.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.platoController">
+<AnchorPane id="AnchorPane" prefHeight="850.0" prefWidth="788.0" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.platoController">
     <children>
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
-      <Pane layoutX="26.0" layoutY="433.0" prefHeight="294.0" prefWidth="755.0" style="-fx-border-color: black;">
+      <Pane layoutX="26.0" layoutY="399.0" prefHeight="438.0" prefWidth="735.0" style="-fx-border-color: black;">
          <children>
-            <TableView fx:id="tableIngredientes" layoutX="11.0" layoutY="63.0" prefHeight="227.0" prefWidth="738.0">
+            <TextField fx:id="txtCodigo" disable="true" layoutX="27.0" layoutY="53.0" promptText="Código" />
+            <TextField fx:id="txtNombre" disable="true" layoutX="194.0" layoutY="53.0" promptText="Nombre" />
+            <TextField fx:id="txtPrecio" disable="true" layoutX="362.0" layoutY="53.0" promptText="Precio" />
+            <TextField fx:id="txtCantidad" disable="true" layoutX="531.0" layoutY="53.0" promptText="Cantidad" />
+            <TableView fx:id="tableIngredientesDisponibles" layoutX="17.0" layoutY="166.0" onMouseClicked="#seleccionarIngredienteDisponible" prefHeight="106.0" prefWidth="707.0">
+               <columns>
+                  <TableColumn fx:id="columCodIngre" prefWidth="90.0" text="Codigo" />
+                  <TableColumn fx:id="columNombreIngre" prefWidth="239.20001220703125" text="Nombres" />
+                  <TableColumn fx:id="columPrecioIngre" prefWidth="203.20004272460938" text="Precio" />
+                  <TableColumn fx:id="columCantidadIngre" prefWidth="171.79998779296875" text="Cantidad" />
+               </columns>
+            </TableView>
+            <TableView fx:id="tableIngredientes" layoutX="14.0" layoutY="292.0" onMouseClicked="#seleccionarIngredienteUtilizados" prefHeight="132.0" prefWidth="713.0">
               <columns>
-                  <TableColumn fx:id="columCodigoIngrediente" prefWidth="192.0" text="Codigo Ingrediente" />
-                <TableColumn fx:id="columNomIngrediente" prefWidth="156.0" text="Nombre Ingrediente" />
-                  <TableColumn fx:id="columPrecioIngredientes" prefWidth="88.0" text="Precio Ingredientes" />
-                <TableColumn fx:id="columCantIngrediente" prefWidth="96.0" text="Cantidad" />
-                  <TableColumn fx:id="columCantUtilizadaIngrediente" prefWidth="180.20001220703125" text="Cantidad Utilizada" />
+                  <TableColumn fx:id="columCodigoIngrediente" prefWidth="64.00006103515625" text="Codigo" />
+                <TableColumn fx:id="columNomIngrediente" prefWidth="291.2000045776367" text="Nombre Ingrediente" />
+                  <TableColumn fx:id="columPrecioIngredientes" prefWidth="82.39996337890625" text="Precio" />
+                <TableColumn fx:id="columCantIngrediente" prefWidth="134.40005493164062" text="Cant. Disponible" />
+                  <TableColumn fx:id="columCantUtilizadaIngrediente" prefWidth="140.0" text="Cant. Utilizada" />
               </columns>
             </TableView>
-            <Label layoutX="14.0" layoutY="13.0" prefHeight="36.0" prefWidth="276.0" text="Ingredientes Del Plato" textFill="#3d6b4c">
+            <Label layoutX="224.0" layoutY="14.0" prefHeight="36.0" prefWidth="276.0" text="Ingredientes Del Plato" textFill="#3d6b4c">
                <font>
                   <Font size="25.0" />
                </font>

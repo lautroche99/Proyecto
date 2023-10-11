@@ -87,19 +87,20 @@ public class buscarClienteController implements Initializable {
     
     @FXML
     private void seleccionar(MouseEvent event) {
-        //evento del mouse para seleccionar el registro y cerrar
-        clientes cli= table.getSelectionModel().getSelectedItem();
-        //obtenemos el valor de la cedula
-        int ruc = cli.getRuc_cl();
-        String nombre = cli.getNom_cl();
-        String apellido = cli.getApellido_cl();
-        //enviamos a la factura por medio del metodo recibirCodigo
-        factura.recibirCodigoCliente(ruc);
-        factura.recibirNombreCompletoCliente(nombre, apellido);
-        //cerramos la ventana buscar alumno
-        Node ventana=(Node) event.getSource();
-        Stage stage=(Stage) ventana.getScene().getWindow();
-        stage.close();
+        if(table.getSelectionModel().getSelectedItem() != null){
+            //evento del mouse para seleccionar el registro y cerrar
+            clientes cli= table.getSelectionModel().getSelectedItem();
+            //obtenemos el valor de la cedula
+            int ruc = cli.getRuc_cl();
+            String nombre = cli.getNom_cl();
+            String apellido = cli.getApellido_cl();
+            //enviamos a la factura por medio del metodo recibirCodigo
+            factura.recibirCodigoCliente(ruc);
+            factura.recibirNombreCompletoCliente(nombre, apellido);
+            //cerramos la ventana buscar alumno
+            Node ventana=(Node) event.getSource();
+            Stage stage=(Stage) ventana.getScene().getWindow();
+            stage.close();
+        }
     }
-
 }
