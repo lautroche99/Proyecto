@@ -212,6 +212,16 @@ public class IngredientesController implements Initializable {
                 }
          }
         cargarDatos();
+        txtPrecio.setDisable(true);
+        txtCantidad.setDisable(true);
+        txtNombre.setDisable(true);
+        txtCodigo.setDisable(true);
+        btnGuardar.setDisable(true);
+        btnCancelar.setDisable(true);
+        btnNuevo.setDisable(false);
+        btnEliminar.setDisable(true);
+        btnModificar.setDisable(true);
+        limpiarTexto();
     }
 
       @FXML
@@ -236,7 +246,7 @@ public class IngredientesController implements Initializable {
     private void cargarDatos() {
         
         System.out.println("holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-        ArrayList<ingredientes> ingreList=ingre.consultar();
+        ingreList=ingre.consultar();
         System.out.println("Luego del consultar");
         System.out.println(ingreList);
         registros=FXCollections.observableArrayList(ingreList);
