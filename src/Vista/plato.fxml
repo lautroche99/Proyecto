@@ -48,15 +48,15 @@
             </Label>
          </children>
       </Pane>
-      <Pane layoutX="39.0" layoutY="333.0" prefHeight="36.0" prefWidth="721.0" style="-fx-border-color: black;">
+      <Pane layoutX="39.0" layoutY="333.0" prefHeight="49.0" prefWidth="722.0" style="-fx-border-color: black;">
          <children>
             <Button fx:id="btnNuevo" layoutX="14.0" layoutY="6.0" mnemonicParsing="false" onAction="#nuevo" text="Nuevo" />
-            <Button fx:id="btnModificar" disable="true" layoutX="90.0" layoutY="6.0" mnemonicParsing="false" onAction="#modificar" text="Modificar" />
+            <Button fx:id="btnModificar" disable="true" layoutX="89.0" layoutY="6.0" mnemonicParsing="false" onAction="#modificar" text="Modificar" />
             <Button fx:id="btnEliminar" disable="true" layoutX="182.0" layoutY="6.0" mnemonicParsing="false" onAction="#eliminar" text="Eliminar" />
             <Button fx:id="btnGuardar" disable="true" layoutX="268.0" layoutY="6.0" mnemonicParsing="false" onAction="#guardar" text="Guardar" />
             <Button fx:id="btnCancelar" disable="true" layoutX="351.0" layoutY="6.0" mnemonicParsing="false" onAction="#cancelar" text="Cancelar" />
+            <Hyperlink fx:id="generarInforme" layoutX="493.0" layoutY="10.0" onAction="#reporte" text="Generar Informe" />
          </children>
       </Pane>
-      <Hyperlink fx:id="generarInforme" layoutX="47.0" layoutY="369.0" onAction="#reporte" text="Generar Informe" />
     </children>
 </AnchorPane>

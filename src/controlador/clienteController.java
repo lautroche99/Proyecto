@@ -241,7 +241,7 @@ public class clienteController implements Initializable {
         cargarDatos();
     }
 
-      @FXML
+    @FXML
     private void cancelar(ActionEvent event) {
         btnGuardar.setDisable(true);
         btnCancelar.setDisable(true);
