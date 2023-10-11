@@ -10,30 +10,43 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="637.0" prefWidth="739.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.platoController">
+<AnchorPane id="AnchorPane" prefHeight="850.0" prefWidth="788.0" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.platoController">
     <children>
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
-      <Pane layoutX="26.0" layoutY="392.0" prefHeight="294.0" prefWidth="735.0" style="-fx-border-color: black;">
+      <Pane layoutX="26.0" layoutY="399.0" prefHeight="438.0" prefWidth="735.0" style="-fx-border-color: black;">
          <children>
-            <TextField fx:id="txtCodigo" disable="true" layoutX="26.0" layoutY="24.0" promptText="Código" />
-            <TextField fx:id="txtNombre" disable="true" layoutX="193.0" layoutY="24.0" promptText="Nombre" />
-            <TextField fx:id="txtPrecio" disable="true" layoutX="361.0" layoutY="24.0" promptText="Precio" />
-            <TextField fx:id="txtCantidad" disable="true" layoutX="530.0" layoutY="24.0" promptText="Cantidad" />
-            <TableView fx:id="tableIngredientes" layoutX="8.0" layoutY="65.0" prefHeight="200.0" prefWidth="713.0">
+            <TextField fx:id="txtCodigo" disable="true" layoutX="27.0" layoutY="53.0" promptText="Código" />
+            <TextField fx:id="txtNombre" disable="true" layoutX="194.0" layoutY="53.0" promptText="Nombre" />
+            <TextField fx:id="txtPrecio" disable="true" layoutX="362.0" layoutY="53.0" promptText="Precio" />
+            <TextField fx:id="txtCantidad" disable="true" layoutX="531.0" layoutY="53.0" promptText="Cantidad" />
+            <TableView fx:id="tableIngredientesDisponibles" layoutX="17.0" layoutY="166.0" onMouseClicked="#seleccionarIngredienteDisponible" prefHeight="106.0" prefWidth="707.0">
+               <columns>
+                  <TableColumn fx:id="columCodIngre" prefWidth="90.0" text="Codigo" />
+                  <TableColumn fx:id="columNombreIngre" prefWidth="239.20001220703125" text="Nombres" />
+                  <TableColumn fx:id="columPrecioIngre" prefWidth="203.20004272460938" text="Precio" />
+                  <TableColumn fx:id="columCantidadIngre" prefWidth="171.79998779296875" text="Cantidad" />
+               </columns>
+            </TableView>
+            <TableView fx:id="tableIngredientes" layoutX="14.0" layoutY="292.0" onMouseClicked="#seleccionarIngredienteUtilizados" prefHeight="132.0" prefWidth="713.0">
               <columns>
-                  <TableColumn fx:id="columCodigoIngrediente" prefWidth="192.0" text="Codigo Ingrediente" />
-                <TableColumn fx:id="columNomIngrediente" prefWidth="156.0" text="Nombre Ingrediente" />
-                  <TableColumn fx:id="columPrecioIngredientes" prefWidth="88.0" text="Precio Ingredientes" />
-                <TableColumn fx:id="columCantIngrediente" prefWidth="96.0" text="Cantidad" />
-                  <TableColumn fx:id="columCantUtilizadaIngrediente" prefWidth="178.0" text="Cantidad Utilizada" />
+                  <TableColumn fx:id="columCodigoIngrediente" prefWidth="64.00006103515625" text="Codigo" />
+                <TableColumn fx:id="columNomIngrediente" prefWidth="291.2000045776367" text="Nombre Ingrediente" />
+                  <TableColumn fx:id="columPrecioIngredientes" prefWidth="82.39996337890625" text="Precio" />
+                <TableColumn fx:id="columCantIngrediente" prefWidth="134.40005493164062" text="Cant. Disponible" />
+                  <TableColumn fx:id="columCantUtilizadaIngrediente" prefWidth="140.0" text="Cant. Utilizada" />
               </columns>
             </TableView>
+            <Label layoutX="224.0" layoutY="14.0" prefHeight="36.0" prefWidth="276.0" text="Ingredientes Del Plato" textFill="#3d6b4c">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
       <Pane layoutX="34.0" layoutY="33.0" prefHeight="294.0" prefWidth="727.0" style="-fx-border-color: black;">
          <children>
             <TextField fx:id="Buscar" layoutX="21.0" layoutY="14.0" onKeyReleased="#buscarplato" promptText="Buscar..." style="-fx-border-color: black; -fx-border-radius: 10;" />
-            <TableView fx:id="table" layoutX="7.0" layoutY="80.0" onMouseClicked="#MostrarFilas" prefHeight="208.0" prefWidth="707.0">
+            <TableView fx:id="table" layoutX="7.0" layoutY="61.0" onMouseClicked="#MostrarFilas" prefHeight="227.0" prefWidth="707.0">
               <columns>
                 <TableColumn fx:id="columCod" prefWidth="90.0" text="Código" />
                 <TableColumn fx:id="columNom" prefWidth="172.0" text="Nombres" />
@@ -41,7 +54,7 @@
                   <TableColumn fx:id="columCantidad" prefWidth="132.0" text="Cantidad" />
               </columns>
             </TableView>
-            <Label layoutX="339.0" layoutY="10.0" prefHeight="17.0" prefWidth="78.0" text="Plato" textFill="#3d6b4c">
+            <Label layoutX="305.0" layoutY="9.0" prefHeight="17.0" prefWidth="78.0" text="Plato" textFill="#3d6b4c">
                <font>
                   <Font size="25.0" />
                </font>

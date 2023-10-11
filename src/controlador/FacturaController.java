@@ -5,19 +5,28 @@
  */
 package controlador;
 
+import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -53,14 +62,28 @@ public class FacturaController implements Initializable {
     @FXML
     private Label etiFecha;
     @FXML
-    private ComboBox<?> cmbPagos;
+    private ComboBox<String> cmbPagos;
+    @FXML
+    private Button buscarCliente;
+    @FXML
+    private TextField clienteNombreCompleto;
+    @FXML
+    private Label etiTotal;
+    @FXML
+    private TableView<?> tableDetalleFactura;
+    //private TableView<Detalle_pedido> tableDetalleFactura;
 
+    ArrayList<String> pagosList = new ArrayList<>(Arrays.asList("Efectivo", "Tarjeta"));
+    ArrayList<?> detallePedidoList = new ArrayList();
+    //ArrayList<Detalle_pedido> detallePedidoList = new ArrayList();
+    //Pedido pedido = new Pedido();
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        cargarFecha();
+        cargarCombo();
     }    
 
     @FXML
@@ -82,24 +105,54 @@ public class FacturaController implements Initializable {
     @FXML
     private void cargarcombo(ActionEvent event) {
     }
-    
-public void cargarFecha(){
-Date objDate = new Date(); // Sistema actual La fecha y la
-//hora se asignan a objDate
-String strDateFormat = "dd/MMM/yyyy"; // El formato de
-//fecha está especificado
-SimpleDateFormat objSDF = new
-SimpleDateFormat(strDateFormat); // La cadena de formato de fecha
-//se pasa como un argumento al objeto
-etiFecha.setText(objSDF.format(objDate));
-}  
-//    
-//private void cargarCombo() {
-//    cmbPagos.getItems().clear();
-//    ArrayList<pagos> lista=p.consulta();
-//    for (pagos obj : lista) {
-//        cmbPagos.getItems().add(obj.getConcepto());
-//}
+     
 
+    private void cargarCombo() {
+        cmbPagos.getItems().clear();
+        for (String obj : pagosList) {
+            cmbPagos.getItems().add(obj);
+        }
+    }
+
+    @FXML
+    private void inBuscarCliente(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+
+            fxmlLoader.setLocation(getClass().getResource("/Vista/buscarCliente.fxml"));
+
+            Scene scene = new Scene(fxmlLoader.load());
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setTitle("Factura");
+            stage.initModality(Modality.APPLICATION_MODAL);
+            //instanciamos el controlador de buscarCliente
+            buscarClienteController buscarControlador = fxmlLoader.getController();
+            //le enviamos el nombre del controlador a recibirDatos que se encuentra en el segundo formulario 
+            buscarControlador.recibirDatos(this);
+            stage.show();//mostramos el segundo formulari
+        } catch (IOException ex) {
+            Logger.getLogger(FacturaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void cargarFecha(){
+        Date objDate = new Date(); // Sistema actual La fecha y la hora se asignan a objDate
+        String strDateFormat = "dd/MMM/yyyy"; // El formato de fecha está especificado
+        SimpleDateFormat objSDF = new SimpleDateFormat(strDateFormat); // La cadena de formato de fecha se pasa como un argumento al objeto
+        etiFecha.setText(objSDF.format(objDate));
+    }
+    
+    public void recibirCodigoCliente(int ruc){
+        acliente.setText(String.valueOf(ruc));
+    }
+    
+    public void recibirNombreCompletoCliente(String nombre, String apellido){
+        clienteNombreCompleto.setText(nombre + " " + apellido);
+    }
+
+    public void cargarTabla(){
+        //etiTotal.setText(pedido.getTotal());
+    }
 }
 

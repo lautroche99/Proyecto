@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="343.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.buscarIngredienteController">
+   <children>
+      <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
+      <Pane layoutX="34.0" layoutY="33.0" prefHeight="287.0" prefWidth="727.0" style="-fx-border-color: black;">
+         <children>
+            <TableView fx:id="table" layoutX="18.0" layoutY="67.0" onMouseClicked="#seleccionar" prefHeight="200.0" prefWidth="654.0">
+               <columns>
+                  <TableColumn fx:id="columCodIngre" prefWidth="90.0" text="Codigo" />
+                  <TableColumn fx:id="columNombreIngre" prefWidth="239.20001220703125" text="Nombres" />
+                  <TableColumn fx:id="columPrecioIngre" prefWidth="203.20004272460938" text="Precio" />
+                  <TableColumn fx:id="columCantidadIngre" prefWidth="121.5999755859375" text="Cantidad" />
+               </columns>
+            </TableView>
+            <Label layoutX="280.0" layoutY="10.0" prefHeight="36.0" prefWidth="222.0" text="Ingredientes" textFill="#3d6b4c">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.MenuController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.MenuController">
    <children>
       <Pane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #fff5c4;">
          <children>
@@ -25,6 +25,7 @@
             <Button fx:id="cerrar" layoutX="254.0" layoutY="298.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="32.0" prefWidth="92.0" text="Cerrar Sesion" />
             <Button fx:id="clientes" layoutX="78.0" layoutY="266.0" mnemonicParsing="false" onAction="#inclientes" prefHeight="32.0" prefWidth="92.0" text="Clientes" />
             <Button fx:id="ingredientes" layoutX="440.0" layoutY="266.0" mnemonicParsing="false" onAction="#ininventario" prefHeight="32.0" prefWidth="92.0" text="Inventario" />
+            <Button fx:id="factura" layoutX="261.0" layoutY="224.0" mnemonicParsing="false" onAction="#infactura" prefHeight="32.0" prefWidth="92.0" text="Factura" />
          </children>
       </Pane>
    </children>
