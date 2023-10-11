@@ -148,6 +148,7 @@ public class platoController implements Initializable {
         txtCantidad.setDisable(false);
         txtNombre.setDisable(false);
         txtPrecio.setDisable(false);
+        btnAgregarIngredientes.setDisable(false);
         txtNombre.requestFocus();//pasar el foco al campo
     }
 
@@ -250,6 +251,7 @@ public class platoController implements Initializable {
         txtCantidad.setDisable(true);
         txtNombre.setDisable(true);
         txtCodigo.setDisable(true);
+        btnAgregarIngredientes.setDisable(true);
         limpiarTexto();
     }
 
