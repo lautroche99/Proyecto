@@ -95,6 +95,8 @@ public class platoController implements Initializable {
     private TableColumn<ingredientes, Integer> columPrecioIngredientes;
     @FXML
     private TableView<ingredientes> tableIngredientes;
+    @FXML
+    private Button btnAgregarIngredientes;
     /**?
      * Initializes the controller class.
      * @param url
@@ -282,17 +284,28 @@ public class platoController implements Initializable {
     }
 
     private void cargarDatosIngredientesTabla() {
-        ingrelist=ingre.consultar();
+        //ingrelist=ingre.consultar();
         registrosIngredientes=FXCollections.observableArrayList(ingrelist);
         columCodigoIngrediente.setCellValueFactory(new PropertyValueFactory<>("Cod_ingre"));
         columNomIngrediente.setCellValueFactory(new PropertyValueFactory<>("nom_ingre"));
         columPrecioIngredientes.setCellValueFactory(new PropertyValueFactory<>("precio_ingre"));
         columCantIngrediente.setCellValueFactory(new PropertyValueFactory<>("Cant_ingre"));
         columCantUtilizadaIngrediente.setEditable(true);
-        columCantUtilizadaIngrediente.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));  
-        columCantUtilizadaIngrediente.setOnEditCommit(e-> String.valueOf(e) );
+        //columCantUtilizadaIngrediente.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));  
+        //columCantUtilizadaIngrediente.setOnEditCommit(e-> String.valueOf(e) );
 //        //Agregamos a la tabla el registro que contiene la lista de objetos
         tableIngredientes.setItems(registrosIngredientes);
         tableIngredientes.setEditable(true);
     }
+
+    @FXML
+    private void inAgregarIngredientes(ActionEvent event) {
+    }
+    
+    public void recibirDatosIngredientes(ingredientes ingre){
+        ingredientes nuevo = ingre;
+        ingrelist.add(nuevo);
+        cargarDatosIngredientesTabla();
+    }
+
 }
