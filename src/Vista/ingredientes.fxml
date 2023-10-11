@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -10,8 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/20.0.1" fx:controller="controlador.IngredientesController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.IngredientesController">
    <children>
       <Label fx:id="label" layoutX="136.0" layoutY="130.0" minHeight="16" minWidth="69" />
       <Pane layoutX="36.0" layoutY="43.0" prefHeight="294.0" prefWidth="200.0" style="-fx-border-color: black;">
@@ -25,7 +24,7 @@
       <Pane layoutX="236.0" layoutY="43.0" prefHeight="294.0" prefWidth="523.0" style="-fx-border-color: black;">
          <children>
             <TextField fx:id="Buscar" layoutX="21.0" layoutY="14.0" onKeyReleased="#buscarAlum" promptText="Buscar..." style="-fx-border-color: black; -fx-border-radius: 10;" />
-            <TableView fx:id="table" layoutX="21.0" layoutY="80.0" onMouseClicked="#MostrarFilas" prefHeight="200.0" prefWidth="500.0">
+            <TableView fx:id="table" layoutX="12.0" layoutY="70.0" onMouseClicked="#MostrarFilas" prefHeight="200.0" prefWidth="500.0">
                <columns>
                   <TableColumn fx:id="columCod" prefWidth="90.0" text="Codigo" />
                   <TableColumn fx:id="columNom" prefWidth="172.0" text="Nombres" />
