@@ -63,6 +63,8 @@ public class FacturaController implements Initializable {
     private ComboBox<?> cmbPagos;
     @FXML
     private Button buscarCliente;
+    @FXML
+    private TextField clienteNombreCompleto;
 
     /**
      * Initializes the controller class.
@@ -129,8 +131,12 @@ public class FacturaController implements Initializable {
         etiFecha.setText(objSDF.format(objDate));
     }
     
-    public void recibirCodigo(int ruc){
+    public void recibirCodigoCliente(int ruc){
         acliente.setText(String.valueOf(ruc));
+    }
+    
+    public void recibirNombreCompletoCliente(String nombre, String apellido){
+        clienteNombreCompleto.setText(nombre + " " + apellido);
     }
 
 }
