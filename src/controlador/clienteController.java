@@ -239,6 +239,13 @@ public class clienteController implements Initializable {
                 }
          }
         cargarDatos();
+                txtTel.setDisable(true);
+        txtRuc.setDisable(true);
+        txtNombre.setDisable(true);
+        txtCodigo.setDisable(true);
+        txtDireccion.setDisable(true);
+        txtApellido.setDisable(true);
+        limpiarTexto();
     }
 
     @FXML

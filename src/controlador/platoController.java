@@ -263,6 +263,17 @@ public class platoController implements Initializable {
                 }
          }
         cargarDatos();
+        txtPrecio.setDisable(true);
+        txtCantidad.setDisable(true);
+        txtNombre.setDisable(true);
+        txtCodigo.setDisable(true);
+        btnAgregarIngredientes.setDisable(true);
+        btnGuardar.setDisable(true);
+        btnCancelar.setDisable(true);
+        btnNuevo.setDisable(false);
+        btnEliminar.setDisable(true);
+        btnModificar.setDisable(true);
+        limpiarTexto();
     }
 
       @FXML
