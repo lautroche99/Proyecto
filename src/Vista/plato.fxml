@@ -15,11 +15,24 @@
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
       <Pane layoutX="26.0" layoutY="441.0" prefHeight="402.0" prefWidth="836.0" style="-fx-border-color: black;">
          <children>
-            <TextField fx:id="txtCodigoIngre" disable="true" layoutX="17.0" layoutY="50.0" promptText="Código" />
-            <TextField fx:id="txtNombreIngre" disable="true" layoutX="197.0" layoutY="50.0" promptText="Nombre" />
-            <TextField fx:id="txtPrecioIngre" disable="true" layoutX="371.0" layoutY="50.0" promptText="Precio" />
-            <TextField fx:id="txtCantidadIngre" disable="true" layoutX="543.0" layoutY="50.0" promptText="Cantidad" />
-            <TableView fx:id="tableIngredientes" layoutX="13.0" layoutY="85.0" onMouseClicked="#seleccionarIngredienteUtilizados" prefHeight="304.0" prefWidth="417.0">
+            <TextField fx:id="txtCodigo" disable="true" layoutX="17.0" layoutY="50.0" promptText="Código" />
+            <TextField fx:id="txtNombre" disable="true" layoutX="197.0" layoutY="50.0" promptText="Nombre" />
+            <TextField fx:id="txtPrecio" disable="true" layoutX="371.0" layoutY="50.0" promptText="Precio" />
+            <TextField fx:id="txtCantidad" disable="true" layoutX="543.0" layoutY="50.0" promptText="Cantidad" />
+            <Label layoutX="271.0" layoutY="9.0" prefHeight="36.0" prefWidth="276.0" text="Ingredientes Del Plato" textFill="#3d6b4c">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <TableView fx:id="tableIngredientesDisponibles" layoutX="14.0" layoutY="83.0" onMouseClicked="#seleccionarIngredienteDisponible" prefHeight="304.0" prefWidth="385.0">
+               <columns>
+                  <TableColumn fx:id="columCodIngre" prefWidth="90.0" text="Codigo" />
+                  <TableColumn fx:id="columNombreIngre" prefWidth="153.60003662109375" text="Nombres" />
+                  <TableColumn fx:id="columPrecioIngre" minWidth="0.0" prefWidth="68.79998779296875" text="Precio" />
+                  <TableColumn fx:id="columCantidadIngre" prefWidth="71.20001220703125" text="Cantidad" />
+               </columns>
+            </TableView>
+            <TableView fx:id="tableIngredientes" layoutX="409.0" layoutY="83.0" onMouseClicked="#seleccionarIngredienteUtilizados" prefHeight="304.0" prefWidth="417.0">
               <columns>
                   <TableColumn fx:id="columCodigoIngrediente" prefWidth="64.00006103515625" text="Codigo" />
                 <TableColumn fx:id="columNomIngrediente" prefWidth="123.19998168945312" text="Nombre Ingrediente" />
@@ -28,19 +41,8 @@
                   <TableColumn fx:id="columCantUtilizadaIngrediente" text="Cant. Utilizada" />
               </columns>
             </TableView>
-            <Label layoutX="255.0" layoutY="14.0" prefHeight="36.0" prefWidth="276.0" text="Ingredientes Del Plato" textFill="#3d6b4c">
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Label>
-            <TableView fx:id="tableIngredientesDisponibles" layoutX="461.0" layoutY="85.0" onMouseClicked="#seleccionarIngredienteDisponible" prefHeight="304.0" prefWidth="347.0">
-               <columns>
-                  <TableColumn fx:id="columCodIngre" prefWidth="90.0" text="Codigo" />
-                  <TableColumn fx:id="columNombreIngre" prefWidth="63.9998779296875" text="Nombres" />
-                  <TableColumn fx:id="columPrecioIngre" minWidth="0.0" prefWidth="66.39996337890625" text="Precio" />
-                  <TableColumn fx:id="columCantidadIngre" prefWidth="106.4000244140625" text="Cantidad" />
-               </columns>
-            </TableView>
+            <Button fx:id="btnBorrar" disable="true" layoutX="759.0" layoutY="50.0" mnemonicParsing="false" onAction="#actionbtnBorrar" text="Borrar" />
+            <Button fx:id="btnAgregarIngredientePlato" disable="true" layoutX="719.0" layoutY="14.0" mnemonicParsing="false" onAction="#IngredientesdePlato" text="Agregar Plato" />
          </children>
       </Pane>
       <Pane layoutX="30.0" layoutY="21.0" prefHeight="294.0" prefWidth="836.0" style="-fx-border-color: black;">
@@ -69,9 +71,9 @@
             <Button fx:id="btnGuardar" disable="true" layoutX="230.0" layoutY="60.0" mnemonicParsing="false" onAction="#guardar" text="Guardar" />
             <Button fx:id="btnCancelar" disable="true" layoutX="307.0" layoutY="60.0" mnemonicParsing="false" onAction="#cancelar" text="Cancelar" />
             <TextField fx:id="txtCodigo" disable="true" layoutX="9.0" layoutY="17.0" promptText="Código" />
-            <TextField fx:id="txtNombre" disable="true" layoutX="192.0" layoutY="17.0" promptText="Nombre" />
-            <TextField fx:id="txtPrecio" disable="true" layoutX="368.0" layoutY="17.0" promptText="Precio" />
-            <TextField fx:id="txtCantidad" disable="true" layoutX="538.0" layoutY="17.0" promptText="Cantidad" />
+            <TextField fx:id="txtNombre" disable="true" layoutX="218.0" layoutY="17.0" promptText="Nombre" />
+            <TextField fx:id="txtPrecio" disable="true" layoutX="418.0" layoutY="17.0" promptText="Precio" />
+            <TextField fx:id="txtCantidad" disable="true" layoutX="616.0" layoutY="17.0" promptText="Cantidad" />
             <Hyperlink fx:id="generarInforme" layoutX="435.0" layoutY="61.0" onAction="#reporte" text="Generar Informe" />
          </children>
       </Pane>

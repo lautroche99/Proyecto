@@ -39,6 +39,7 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.converter.IntegerStringConverter;
 import modelo.Detalle_Plato;
+import modelo.Reporte;
 import modelo.plato;
 import modelo.ingredientes;
 /**
@@ -88,7 +89,7 @@ public class platoController implements Initializable {
     ObservableList<ingredientes> registrosIngredientes;
     plato pla = new plato();
     ingredientes ingre = new ingredientes(); 
-    
+    Reporte R = new Reporte();
     ArrayList<plato> plaList = new ArrayList<>();
     ArrayList<ingredientes> ingrelist = new ArrayList<>(); 
     ArrayList<ingredientes> ingreDisponibleList = new ArrayList<>();
@@ -129,6 +130,9 @@ public class platoController implements Initializable {
     private TextField txtPrecioIngre;
     @FXML
     private TextField txtCantidadIngre;
+    private Button btnBorrar;
+    @FXML
+    private Button btnAgregarIngredientePlato;
     /**?
      * Initializes the controller class.
      * @param url
@@ -137,6 +141,14 @@ public class platoController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         ingreDisponibleList = ingre.consultar();
+ columCantUtilizadaIngrediente.setEditable(true);
+columCantUtilizadaIngrediente.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+columCantUtilizadaIngrediente.setOnEditCommit(event -> {
+    ingredientes ingrediente = event.getTableView().getItems().get(event.getTablePosition().getRow());
+    ingrediente.setCant_ingre(event.getNewValue());
+    // Aquí puedes realizar otras acciones relacionadas con la edición, si es necesario.
+});
+
         //ingrelist=ingre.consultar();
         cargarDatos();
         cargarDatosIngredientesTabla();
@@ -334,11 +346,11 @@ public class platoController implements Initializable {
         txtCantidad.setDisable(true);
         txtNombre.setDisable(true);
         txtCodigo.setDisable(true);
-        btnAgregarIngredientes.setDisable(true);
     }
 
     @FXML
     private void reporte(ActionEvent event) {
+        R.generarReporte("","reporte");
     }
 
     private void cargarDatos() {
@@ -455,17 +467,27 @@ public class platoController implements Initializable {
             }
         }
     }
-
+    
     @FXML
     private void seleccionarIngredienteUtilizados(MouseEvent event) {
-        //evento del mouse para seleccionar el registro y cerrar
+        btnBorrar.setDisable(false);
+        
+    }
+
+    @FXML
+    private void actionbtnBorrar(ActionEvent event) {
+                //evento del mouse para seleccionar el registro y cerrar
         if(tableIngredientes.getSelectionModel().getSelectedItem() != null){
             ingredientes ingre1 = tableIngredientes.getSelectionModel().getSelectedItem();
             agregaringreDisponibleList(ingre1);
             quitaringreList(ingre1);
             cargarDatosIngredientesTabla();
             cargarDatosIngredientesDisponibles();
-        }
+    }
+}
+
+    @FXML
+    private void IngredientesdePlato(ActionEvent event) {
     }
     
     public static ArrayList<ingredientes> removeDuplicates(ArrayList<ingredientes> list) 
