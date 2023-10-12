@@ -130,4 +130,5 @@ public class ingredientes extends conexion implements sentencias  {
             return false;
         }
     }
+
 }
