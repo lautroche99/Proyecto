@@ -12,11 +12,22 @@ import java.util.ArrayList;
  * @author hugoi
  */
 public class Detalle_Plato extends conexion implements sentencias {
-    private int Cod_ingre, IDPlato ;
+    private int Cod_ingre, IDPlato, cant_ingre;
 
-    public Detalle_Plato(int Cod_ingre, int IDPlato) {
+    public Detalle_Plato(int Cod_ingre, int IDPlato, int cant_ingre) {
         this.Cod_ingre = Cod_ingre;
         this.IDPlato = IDPlato;
+        this.cant_ingre = cant_ingre;
+    }
+    
+    public Detalle_Plato() {}
+
+    public int getCant_ingre() {
+        return cant_ingre;
+    }
+
+    public void setCant_ingre(int cant_ingre) {
+        this.cant_ingre = cant_ingre;
     }
 
     public int getCod_ingre() {

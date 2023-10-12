@@ -10,15 +10,15 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="850.0" prefWidth="879.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.platoController">
+<AnchorPane id="AnchorPane" prefHeight="850.0" prefWidth="879.0" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.platoController">
     <children>
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
       <Pane layoutX="26.0" layoutY="441.0" prefHeight="402.0" prefWidth="836.0" style="-fx-border-color: black;">
          <children>
-            <TextField fx:id="txtCodigo" disable="true" layoutX="17.0" layoutY="50.0" promptText="Código" />
-            <TextField fx:id="txtNombre" disable="true" layoutX="197.0" layoutY="50.0" promptText="Nombre" />
-            <TextField fx:id="txtPrecio" disable="true" layoutX="371.0" layoutY="50.0" promptText="Precio" />
-            <TextField fx:id="txtCantidad" disable="true" layoutX="543.0" layoutY="50.0" promptText="Cantidad" />
+            <TextField fx:id="txtCodigoIngre" disable="true" layoutX="17.0" layoutY="50.0" promptText="Código" />
+            <TextField fx:id="txtNombreIngre" disable="true" layoutX="197.0" layoutY="50.0" promptText="Nombre" />
+            <TextField fx:id="txtPrecioIngre" disable="true" layoutX="371.0" layoutY="50.0" promptText="Precio" />
+            <TextField fx:id="txtCantidadIngre" disable="true" layoutX="543.0" layoutY="50.0" promptText="Cantidad" />
             <TableView fx:id="tableIngredientes" layoutX="13.0" layoutY="85.0" onMouseClicked="#seleccionarIngredienteUtilizados" prefHeight="304.0" prefWidth="417.0">
               <columns>
                   <TableColumn fx:id="columCodigoIngrediente" prefWidth="64.00006103515625" text="Codigo" />
