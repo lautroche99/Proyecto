@@ -126,6 +126,7 @@ public class FacturaController implements Initializable {
             stage.setScene(scene);
             stage.setTitle("Factura");
             stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
             //instanciamos el controlador de buscarCliente
             buscarClienteController buscarControlador = fxmlLoader.getController();
             //le enviamos el nombre del controlador a recibirDatos que se encuentra en el segundo formulario 

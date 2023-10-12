@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="850.0" prefWidth="879.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.platoController">
+<AnchorPane id="AnchorPane" prefHeight="850.0" prefWidth="879.0" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.platoController">
     <children>
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
       <Pane layoutX="26.0" layoutY="441.0" prefHeight="402.0" prefWidth="836.0" style="-fx-border-color: black;">

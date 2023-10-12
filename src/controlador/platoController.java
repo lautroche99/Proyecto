@@ -38,6 +38,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.converter.IntegerStringConverter;
+import modelo.Detalle_Plato;
 import modelo.Reporte;
 import modelo.plato;
 import modelo.ingredientes;
@@ -86,13 +87,13 @@ public class platoController implements Initializable {
     ObservableList<plato> registros;
     ObservableList<ingredientes> registrosIngredientesDisponibles;
     ObservableList<ingredientes> registrosIngredientes;
-    
     plato pla = new plato();
     ingredientes ingre = new ingredientes(); 
     Reporte R = new Reporte();
     ArrayList<plato> plaList = new ArrayList<>();
     ArrayList<ingredientes> ingrelist = new ArrayList<>(); 
     ArrayList<ingredientes> ingreDisponibleList = new ArrayList<>();
+    ArrayList<Detalle_Plato> detallePlatoList = new ArrayList<>();
     
     boolean modificar=false;
     private Button Pedidos;
@@ -122,6 +123,13 @@ public class platoController implements Initializable {
     @FXML
     private TableView<ingredientes> tableIngredientesDisponibles;
     @FXML
+    private TextField txtCodigoIngre;
+    @FXML
+    private TextField txtNombreIngre;
+    @FXML
+    private TextField txtPrecioIngre;
+    @FXML
+    private TextField txtCantidadIngre;
     private Button btnBorrar;
     @FXML
     private Button btnAgregarIngredientePlato;
@@ -261,21 +269,59 @@ columCantUtilizadaIngrediente.setOnEditCommit(event -> {
             pla.setPrecio_pla(Integer.parseInt(txtPrecio.getText()));  
             System.out.println("titulo de comprobacion de llamada de insertar");
             System.out.println(pla.getNom_pla());
-            if(pla.insertar()){
+
+            if(ingrelist.size() > 0){
+                System.out.println("Lista no vacia");
+                ingrelist = removeDuplicates(ingrelist);
+                for (ingredientes item : registrosIngredientes) {
+                    Detalle_Plato dp = new Detalle_Plato();
+                    dp.setCod_ingre(columCodigoIngrediente.getCellData(item));
+                    dp.setIDPlato(1);
+                    if(columCantUtilizadaIngrediente.getCellData(item) != null) 
+                        dp.setCant_ingre(columCantUtilizadaIngrediente.getCellData(item));
+                    else dp.setCant_ingre(0);
+                    detallePlatoList.add(dp);
+                }
+
+                ingredientes ingre1 = tableIngredientes.getSelectionModel().getSelectedItem();
+
+                if(pla.insertarConIngredientes(ingrelist, detallePlatoList)){
                     Alert alerta=new Alert(Alert.AlertType.INFORMATION);
                     alerta.setHeaderText(null);
                     alerta.setTitle("El sistema comunica");
                     alerta.setContentText("Datos insertados correctamente");
                     alerta.show();
                 }else{
-                  Alert alerta=new Alert(Alert.AlertType.ERROR);
+                    Alert alerta=new Alert(Alert.AlertType.ERROR);
                     alerta.setHeaderText(null);
                     alerta.setTitle("El sistema comunica");
                     alerta.setContentText("Datos no insertados");
                     alerta.show();  
                 }
-         }
+            }else{
+                System.out.println("Lista vacia");
+                if(pla.insertar()){
+                    Alert alerta=new Alert(Alert.AlertType.INFORMATION);
+                    alerta.setHeaderText(null);
+                    alerta.setTitle("El sistema comunica");
+                    alerta.setContentText("Datos insertados correctamente");
+                    alerta.show();
+                }else{
+                    Alert alerta=new Alert(Alert.AlertType.ERROR);
+                    alerta.setHeaderText(null);
+                    alerta.setTitle("El sistema comunica");
+                    alerta.setContentText("Datos no insertados");
+                    alerta.show();  
+                }
+            }
+            //Vaciar todo
+            ingrelist.clear();
+            ingreDisponibleList = ingre.consultar();
+            cargarDatosIngredientesTabla();
+            cargarDatosIngredientesDisponibles();
+        }
         cargarDatos();
+        limpiarTexto();
         txtPrecio.setDisable(true);
         txtCantidad.setDisable(true);
         txtNombre.setDisable(true);
@@ -285,12 +331,11 @@ columCantUtilizadaIngrediente.setOnEditCommit(event -> {
         btnNuevo.setDisable(false);
         btnEliminar.setDisable(true);
         btnModificar.setDisable(true);
-        limpiarTexto();
     }
 
       @FXML
     private void cancelar(ActionEvent event) {
-                limpiarTexto();
+        limpiarTexto();
         btnGuardar.setDisable(true);
         btnCancelar.setDisable(true);
         btnNuevo.setDisable(false);
@@ -318,12 +363,12 @@ columCantUtilizadaIngrediente.setOnEditCommit(event -> {
         //Agregamos a la tabla el registro que contiene la lista de objetos
         table.setItems(registros);
     }
-        private void limpiarTexto() {
+    private void limpiarTexto() {
+        txtCodigo.setText("");
         txtPrecio.setText("");
         txtCantidad.setText("");
         txtNombre.setText("");
-        txtCodigo.setText("");
-  }
+    }
 
     private void Ventas(ActionEvent event) {
         Pedidos.setDisable(true);
@@ -395,7 +440,7 @@ columCantUtilizadaIngrediente.setOnEditCommit(event -> {
             agregaringrelist(ingre1);
             quitaringreDisponibleList(ingre1);
             cargarDatosIngredientesTabla();
-            cargarDatosIngredientesDisponibles(); 
+            cargarDatosIngredientesDisponibles();
         }
     }
     
@@ -444,4 +489,25 @@ columCantUtilizadaIngrediente.setOnEditCommit(event -> {
     @FXML
     private void IngredientesdePlato(ActionEvent event) {
     }
+    
+    public static ArrayList<ingredientes> removeDuplicates(ArrayList<ingredientes> list) 
+    { 
+  
+        // Create a new ArrayList 
+        ArrayList<ingredientes> newList = new ArrayList<ingredientes>(); 
+  
+        // Traverse through the first list 
+        for (ingredientes element : list) { 
+  
+            // If this element is not present in newList 
+            // then add it 
+            if (!newList.contains(element.getCod_ingre())) { 
+  
+                newList.add(element); 
+            } 
+        } 
+  
+        // return the new list 
+        return newList; 
+    } 
 }

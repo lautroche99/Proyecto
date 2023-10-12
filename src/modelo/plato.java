@@ -78,6 +78,67 @@ public class plato extends conexion implements sentencias  {
             return false;
         }
     }
+    
+    public boolean insertarConIngredientes(ArrayList<ingredientes> ingreList, ArrayList<Detalle_Plato> detallePlatoList) {
+        //INSERT INTO `proyecto`.`plato` (`precio_pla`, `cant_pla`, `nom_pla`) VALUES ('20000', '3', 'ravioli');
+        try {
+            /*
+            String sql="Insert into `proyecto`.`plato` (`precio_pla`, `cant_pla`, `nom_pla`) VALUES ('"+getPrecio_pla()+"','"+getCant_pla()+"','"+getNom_pla()+"'); \n"
+            + "SET @PrimaryKeyValue = LAST_INSERT_ID(); \n"
+            + "INSERT INTO `proyecto`.`detalle_plato` (`Cod_ingre`, `IDPlato`) VALUES ";
+
+            String contInsertDetallePlato = "";
+            for (Detalle_Plato item : detallePlatoList) {
+                contInsertDetallePlato = contInsertDetallePlato +"('" + String.valueOf(item.getCod_ingre()) +"', @PrimaryKeyValue), ";
+            }
+
+            contInsertDetallePlato = contInsertDetallePlato.substring(0,contInsertDetallePlato.length()-2) + "; \n";
+
+            String contUpdate = "";
+
+            for (Detalle_Plato item : detallePlatoList) {
+                contUpdate = contUpdate + "UPDATE `proyecto`.`ingredientes` SET `Cant_ingre` = `Cant_ingre` - " + String.valueOf(item.getCant_ingre()) +" WHERE (`Cod_ingre` = '" + String.valueOf(item.getCod_ingre()) + "'); \n";
+            }
+            
+            sql = sql + contInsertDetallePlato + contUpdate;
+            System.out.println(sql);
+*/
+            Statement query =getCon().createStatement();
+            
+            // Define your SQL queries as strings
+            ArrayList<String> queries = new ArrayList<>();
+            queries.add("Insert into `proyecto`.`plato` (`precio_pla`, `cant_pla`, `nom_pla`) VALUES ('"+getPrecio_pla()+"','"+getCant_pla()+"','"+getNom_pla()+"'); ");
+            queries.add("SET @PrimaryKeyValue = LAST_INSERT_ID(); ");
+
+            String contInsertDetallePlato = "INSERT INTO `proyecto`.`detalle_plato` (`Cod_ingre`, `IDPlato`) VALUES ";
+            for (Detalle_Plato item : detallePlatoList) {
+                contInsertDetallePlato = contInsertDetallePlato +"('" + String.valueOf(item.getCod_ingre()) +"', @PrimaryKeyValue), ";
+            }
+            contInsertDetallePlato = contInsertDetallePlato.substring(0,contInsertDetallePlato.length()-2) + "; \n";
+            queries.add(contInsertDetallePlato);
+
+            for (Detalle_Plato item : detallePlatoList) {
+                queries.add("UPDATE `proyecto`.`ingredientes` SET `Cant_ingre` = `Cant_ingre` - " + String.valueOf(item.getCant_ingre()) +" WHERE (`Cod_ingre` = '" + String.valueOf(item.getCod_ingre()) + "'); ");
+            }
+            
+            // Add queries to the batch
+            for (String q : queries) {
+                query.addBatch(q);
+            }
+
+            // Execute the batch
+            int[] results = query.executeBatch();
+            
+            
+            //query.executeUpdate(sql);
+            System.out.println("verificacion nombre plato");
+            System.out.println(getNom_pla());
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(plato.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
 
     @Override
     public ArrayList consultar() {

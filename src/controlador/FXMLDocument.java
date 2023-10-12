@@ -50,6 +50,7 @@ public class FXMLDocument implements Initializable {
           Object evt = event.getSource();
           Node ventana = (Node) event.getSource();
           Stage stage = (Stage) ventana.getScene().getWindow();
+          stage.setResizable(false);
           
          if( contra.getText().equals(contraseña)){
            mostrarVentana("Interfaz","/Vista/menu.fxml");
@@ -73,6 +74,7 @@ public class FXMLDocument implements Initializable {
             stage.setTitle(titulo);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setScene(scene);
+            stage.setResizable(false);
             stage.show();
         }catch (IOException ex){
             Logger.getLogger(FXMLDocument.class.getName()).log(Level.SEVERE,null,ex);
