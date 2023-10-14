@@ -4,12 +4,15 @@
  * and open the template in the editor.
  */
 package Modelo;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static javafx.scene.input.KeyCode.P;
+import modelo.clientes;
 import modelo.conexion;
 import modelo.sentencias;
 
@@ -28,6 +31,7 @@ public class factura extends conexion implements sentencias  {
     
     public factura() {
     }
+    int factId;
     public factura(int idFactura, String fecha_fac, int total_fac, int ruc, int IDPedido) {
         this.idFactura = idFactura;
         this.fecha_fac = fecha_fac;
@@ -66,20 +70,28 @@ public class factura extends conexion implements sentencias  {
         this.IDPedido = IDPedido;
     }
     
+    
     @Override
     public boolean insertar(){
-        /*
+throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+    }
+    public boolean insertar(clientes cliente_fact){
         try {
-            String sql = "Insert into factura values("+this.idFactura+",'"+this.fecha+"',"+this.cedula+")";
-            Statement query = getCon().createStatement();
-            query.executeUpdate(sql);
+        String sql = "insert into `proyecto`.`factura` (`fecha_fac`, `total_fac`, `IDPedido`,`Pedido_IDClientes`,`ruc`) VALUES ( '" + getFecha_fac() +"', '0', '"+getIDPedido()+"', '"+ cliente_fact.getIDClientes()+"', '"+ cliente_fact.getRuc_cl() +"');" ;
+            PreparedStatement query = getCon().prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+         
+            query.executeUpdate();
+            ResultSet generatedKey=query.getGeneratedKeys();
+            if(generatedKey.next()){
+                factId=generatedKey.getInt(1);
+            }
             return true;
         } catch (SQLException ex) {
             Logger.getLogger(factura.class.getName()).log(Level.SEVERE, null,ex);
             return false;
         }
-        */
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override
@@ -95,6 +107,9 @@ public class factura extends conexion implements sentencias  {
     @Override
     public boolean eliminar() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    public int obtener(){
+        return factId;
     }
     
 }

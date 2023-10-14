@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import java.awt.Image;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,12 +24,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
+import javafx.scene.image.ImageView;
 /**
  *
  * @author hugoi
  */
 public class FXMLDocument implements Initializable {
+    
     
     @FXML
     private Label label;
@@ -43,7 +45,7 @@ public class FXMLDocument implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void ingresar(ActionEvent event) {

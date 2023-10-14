@@ -40,10 +40,10 @@ public class Reporte extends conexion{
         
     }
     //metodo para generar informes con parametros
-    public void generarReporteParametro(String ubi, String titulo, String nombrePar, String valorPar){
+    public void generarReporteParametro(String ubi, String titulo, int fid){
         try {
             HashMap parametro=new HashMap();
-            parametro.put(nombrePar, valorPar);
+            parametro.put("Id", fid);
             URL direccion=getClass().getClassLoader().getResource(ubi);
             JasperReport jr=(JasperReport) JRLoader.loadObject(direccion);
             JasperPrint jp=JasperFillManager.fillReport(jr,parametro,getCon());

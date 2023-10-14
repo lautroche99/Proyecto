@@ -11,8 +11,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import modelo.Pedido;
 
 /**
@@ -23,15 +28,37 @@ import modelo.Pedido;
 public class PedidoController implements Initializable {
 
     @FXML
-    private TableView<Pedido> tablePedidos;
+    private Label label;
     @FXML
-    private TableColumn<Pedido, Integer> coludIDPedido;
+    private TextField txtCodigo;
     @FXML
-    private TableColumn<Pedido, Integer> columIDCliente;
+    private TextField Buscar;
     @FXML
-    private TableColumn<Pedido, Integer> columMetodoCobro;
+    private TableView<Pedido> table;
     @FXML
-    private Button btnClientes;
+    private TableColumn<Pedido, Integer> columCod;
+    @FXML
+    private TableColumn<Pedido, String> columNom;
+    @FXML
+    private TableColumn<?, ?> columApe;
+    @FXML
+    private TableColumn<?, ?> columTel;
+    @FXML
+    private Button btnNuevo;
+    @FXML
+    private Button btnModificar;
+    @FXML
+    private Button btnEliminar;
+    @FXML
+    private Button btnGuardar;
+    @FXML
+    private Button btnCancelar;
+    @FXML
+    private Hyperlink generarInforme;
+    @FXML
+    private TextField txtCliente;
+    @FXML
+    private TextField txtMetodo;
 
     /**
      * Initializes the controller class.
@@ -41,25 +68,36 @@ public class PedidoController implements Initializable {
         // TODO
     }    
 
-//private void inBuscarCliente(ActionEvent event) {
-////        try {
-////            FXMLLoader fxmlLoader = new FXMLLoader();
-////
-////            fxmlLoader.setLocation(getClass().getResource("/Vista/buscarCliente.fxml"));
-////
-////            Scene scene = new Scene(fxmlLoader.load());
-////            Stage stage = new Stage();
-////            stage.setScene(scene);
-////            stage.setTitle("Factura");
-////            stage.initModality(Modality.APPLICATION_MODAL);
-////            //instanciamos el controlador de buscarCliente
-////            buscarClienteController buscarControlador = fxmlLoader.getController();
-////            //le enviamos el nombre del controlador a recibirDatos que se encuentra en el segundo formulario 
-////            buscarControlador.recibirDatos(this);
-////            stage.show();//mostramos el segundo formulari
-////        } catch (IOException ex) {
-////            Logger.getLogger(FacturaController.class.getName()).log(Level.SEVERE, null, ex);
-////        }
-////    }
+    @FXML
+    private void buscarAlum(KeyEvent event) {
+    }
+
+    @FXML
+    private void MostrarFilas(MouseEvent event) {
+    }
+
+    @FXML
+    private void nuevo(ActionEvent event) {
+    }
+
+    @FXML
+    private void modificar(ActionEvent event) {
+    }
+
+    @FXML
+    private void eliminar(ActionEvent event) {
+    }
+
+    @FXML
+    private void guardar(ActionEvent event) {
+    }
+
+    @FXML
+    private void cancelar(ActionEvent event) {
+    }
+
+    @FXML
+    private void reporte(ActionEvent event) {
+    }
     
 }

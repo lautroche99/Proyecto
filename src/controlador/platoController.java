@@ -123,13 +123,6 @@ public class platoController implements Initializable {
     @FXML
     private TableView<ingredientes> tableIngredientesDisponibles;
     @FXML
-    private TextField txtCodigoIngre;
-    @FXML
-    private TextField txtNombreIngre;
-    @FXML
-    private TextField txtPrecioIngre;
-    @FXML
-    private TextField txtCantidadIngre;
     private Button btnBorrar;
     @FXML
     private Button btnAgregarIngredientePlato;
@@ -145,7 +138,8 @@ public class platoController implements Initializable {
 columCantUtilizadaIngrediente.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
 columCantUtilizadaIngrediente.setOnEditCommit(event -> {
     ingredientes ingrediente = event.getTableView().getItems().get(event.getTablePosition().getRow());
-    ingrediente.setCant_ingre(event.getNewValue());
+    //ingrediente.setCant_ingre();
+    columCantUtilizadaIngrediente.setText(Integer.toString(event.getNewValue()));
     // Aquí puedes realizar otras acciones relacionadas con la edición, si es necesario.
 });
 
@@ -412,24 +406,24 @@ columCantUtilizadaIngrediente.setOnEditCommit(event -> {
         cargarDatosIngredientesTabla();
     }
 
-    private void inAgregarIngredientes(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/Vista/buscarIngrediente.fxml"));
-            Scene scene = new Scene(fxmlLoader.load());
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.setTitle("buscarIngrediente");
-            stage.initModality(Modality.APPLICATION_MODAL);
-            //instanciamos el controlador de buscarCliente
-            buscarIngredienteController buscarControlador = fxmlLoader.getController();
-            //le enviamos el nombre del controlador a recibirDatos que se encuentra en el segundo formulario 
-            buscarControlador.recibirDatos(this);
-            stage.show();//mostramos el segundo formulari
-        } catch (IOException ex) {
-            Logger.getLogger(FacturaController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+//    private void inAgregarIngredientes(ActionEvent event) {
+//        try {
+//            FXMLLoader fxmlLoader = new FXMLLoader();
+//            fxmlLoader.setLocation(getClass().getResource("/Vista/buscarIngrediente.fxml"));
+//            Scene scene = new Scene(fxmlLoader.load());
+//            Stage stage = new Stage();
+//            stage.setScene(scene);
+//            stage.setTitle("buscarIngrediente");
+//            stage.initModality(Modality.APPLICATION_MODAL);
+//            //instanciamos el controlador de buscarCliente
+//            buscarIngredienteController buscarControlador = fxmlLoader.getController();
+//            //le enviamos el nombre del controlador a recibirDatos que se encuentra en el segundo formulario 
+//            buscarControlador.recibirDatos(this);
+//            stage.show();//mostramos el segundo formulari
+//        } catch (IOException ex) {
+//            Logger.getLogger(FacturaController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
 
     
     @FXML
@@ -445,11 +439,22 @@ columCantUtilizadaIngrediente.setOnEditCommit(event -> {
     }
     
     public void agregaringrelist(ingredientes ingre1){
-        ingrelist.add(ingre1);
+        //ingrelist.add(ingre1);
+        ingredientes i = new ingredientes();
+        i.setNom_ingre(ingre1.getNom_ingre());
+        i.setCant_ingre(ingre1.getCant_ingre());
+        i.setPrecio_ingre(ingre1.getPrecio_ingre());
+        i.setCod_ingre(ingre1.getCod_ingre());
+        ingrelist.add(i);
     }
     
     public void agregaringreDisponibleList(ingredientes ingre1){
-        ingreDisponibleList.add(ingre1);
+        ingredientes i = new ingredientes();
+        i.setNom_ingre(ingre1.getNom_ingre());
+        i.setCant_ingre(ingre1.getCant_ingre());
+        i.setPrecio_ingre(ingre1.getPrecio_ingre());
+        i.setCod_ingre(ingre1.getCod_ingre());
+        ingreDisponibleList.add(i);
     }
 
     public void quitaringreDisponibleList(ingredientes ingre1){
@@ -470,7 +475,9 @@ columCantUtilizadaIngrediente.setOnEditCommit(event -> {
     
     @FXML
     private void seleccionarIngredienteUtilizados(MouseEvent event) {
-        btnBorrar.setDisable(false);
+        if(tableIngredientesDisponibles.getSelectionModel().getSelectedItem() != null){
+            btnBorrar.setDisable(false);
+        }
         
     }
 
@@ -483,8 +490,8 @@ columCantUtilizadaIngrediente.setOnEditCommit(event -> {
             quitaringreList(ingre1);
             cargarDatosIngredientesTabla();
             cargarDatosIngredientesDisponibles();
+        }
     }
-}
 
     @FXML
     private void IngredientesdePlato(ActionEvent event) {
