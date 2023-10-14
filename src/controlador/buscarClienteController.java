@@ -97,6 +97,7 @@ public class buscarClienteController implements Initializable {
             //enviamos a la factura por medio del metodo recibirCodigo
             factura.recibirCodigoCliente(ruc);
             factura.recibirNombreCompletoCliente(nombre, apellido);
+           // factura.recibirDatosCliente(cli);
             //cerramos la ventana buscar alumno
             Node ventana=(Node) event.getSource();
             Stage stage=(Stage) ventana.getScene().getWindow();

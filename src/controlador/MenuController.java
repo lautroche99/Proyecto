@@ -71,6 +71,7 @@ public class MenuController implements Initializable {
             Scene scene = new Scene(menu);
             stage.setTitle(titulo);
             stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
             stage.setScene(scene);
             stage.show();
         }catch (IOException ex){

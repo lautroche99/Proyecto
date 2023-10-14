@@ -6,25 +6,27 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.IngredientesController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="770.0" style="-fx-background-color: #ffb57e;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.IngredientesController">
    <children>
       <Label fx:id="label" layoutX="136.0" layoutY="130.0" minHeight="16" minWidth="69" />
-      <Pane layoutX="36.0" layoutY="43.0" prefHeight="294.0" prefWidth="200.0" style="-fx-border-color: black;">
+      <Pane layoutX="24.0" layoutY="27.0" prefHeight="310.0" prefWidth="200.0" style="-fx-border-color: black; -fx-background-color: #FFDD94;">
          <children>
             <TextField fx:id="txtCodigo" disable="true" layoutX="26.0" layoutY="24.0" promptText="Codigo" />
-            <TextField fx:id="txtNombre" disable="true" layoutX="26.0" layoutY="60.0" promptText="Nombre" />
-            <TextField fx:id="txtPrecio" disable="true" layoutX="26.0" layoutY="97.0" promptText="Precio" />
-            <TextField fx:id="txtCantidad" disable="true" layoutX="26.0" layoutY="135.0" promptText="Cantidad" />
+            <TextField fx:id="txtNombre" disable="true" layoutX="26.0" layoutY="82.0" promptText="Nombre" />
+            <TextField fx:id="txtPrecio" disable="true" layoutX="26.0" layoutY="143.0" promptText="Precio" />
+            <TextField fx:id="txtCantidad" disable="true" layoutX="26.0" layoutY="206.0" promptText="Cantidad" />
          </children>
       </Pane>
-      <Pane layoutX="236.0" layoutY="43.0" prefHeight="294.0" prefWidth="523.0" style="-fx-border-color: black;">
+      <Pane layoutX="233.0" layoutY="27.0" prefHeight="310.0" prefWidth="523.0" style="-fx-border-color: black; -fx-background-color: #FFDD94;">
          <children>
-            <TextField fx:id="Buscar" layoutX="21.0" layoutY="14.0" onKeyReleased="#buscarAlum" promptText="Buscar..." style="-fx-border-color: black; -fx-border-radius: 10;" />
-            <TableView fx:id="table" layoutX="12.0" layoutY="70.0" onMouseClicked="#MostrarFilas" prefHeight="200.0" prefWidth="500.0">
+            <TextField fx:id="Buscar" layoutX="262.0" layoutY="21.0" onKeyReleased="#buscarAlum" promptText="Buscar..." style="-fx-border-color: black; -fx-border-radius: 10;" />
+            <TableView fx:id="table" layoutX="12.0" layoutY="70.0" onMouseClicked="#MostrarFilas" prefHeight="220.0" prefWidth="500.0" style="-fx-background-color: #fff5c4;">
                <columns>
                   <TableColumn fx:id="columCod" prefWidth="90.0" text="Codigo" />
                   <TableColumn fx:id="columNom" prefWidth="172.0" text="Nombres" />
@@ -32,21 +34,26 @@
                   <TableColumn fx:id="columCantidad" prefWidth="132.0" text="Cantidad" />
                </columns>
             </TableView>
-            <Label layoutX="339.0" layoutY="10.0" prefHeight="36.0" prefWidth="123.0" text="Inventario" textFill="#3d6b4c">
+            <Label layoutX="58.0" layoutY="16.0" prefHeight="36.0" prefWidth="112.0" text="Inventario" textFill="#3d6b4c">
                <font>
                   <Font size="25.0" />
                </font>
             </Label>
+            <ImageView fitHeight="43.0" fitWidth="38.0" layoutX="14.0" layoutY="13.0">
+               <image>
+                  <Image url="@../multimedia/fries-svgrepo-com.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
-      <Pane layoutX="50.0" layoutY="344.0" prefHeight="49.0" prefWidth="600.0" style="-fx-border-color: black;">
+      <Pane layoutX="24.0" layoutY="344.0" prefHeight="49.0" prefWidth="733.0" style="-fx-border-color: black; -fx-background-color: #FFDD94;">
          <children>
-            <Button fx:id="btnNuevo" layoutX="14.0" layoutY="6.0" mnemonicParsing="false" onAction="#nuevo" text="Nuevo" />
-            <Button fx:id="btnModificar" disable="true" layoutX="90.0" layoutY="6.0" mnemonicParsing="false" onAction="#modificar" text="Modificar" />
-            <Button fx:id="btnEliminar" disable="true" layoutX="182.0" layoutY="6.0" mnemonicParsing="false" onAction="#eliminar" text="Eliminar" />
-            <Button fx:id="btnGuardar" disable="true" layoutX="268.0" layoutY="6.0" mnemonicParsing="false" onAction="#guardar" text="Guardar" />
-            <Button fx:id="btnCancelar" disable="true" layoutX="351.0" layoutY="6.0" mnemonicParsing="false" onAction="#cancelar" text="Cancelar" />
-            <Hyperlink fx:id="generarInforme" layoutX="467.0" layoutY="7.0" onAction="#reporte" text="Generar Informe" />
+            <Button fx:id="btnNuevo" layoutX="52.0" layoutY="12.0" mnemonicParsing="false" onAction="#nuevo" style="-fx-background-color: #ffb57e; -fx-background-radius: 50px;" text="Nuevo" textFill="#b90909" />
+            <Button fx:id="btnModificar" disable="true" layoutX="119.0" layoutY="12.0" mnemonicParsing="false" onAction="#modificar" style="-fx-background-color: #ffb57e; -fx-background-radius: 50px;" text="Modificar" textFill="#b90909" />
+            <Button fx:id="btnEliminar" disable="true" layoutX="204.0" layoutY="12.0" mnemonicParsing="false" onAction="#eliminar" style="-fx-background-color: #ffb57e; -fx-background-radius: 50px;" text="Eliminar" textFill="#b90909" />
+            <Button fx:id="btnGuardar" disable="true" layoutX="280.0" layoutY="12.0" mnemonicParsing="false" onAction="#guardar" style="-fx-background-color: #ffb57e; -fx-background-radius: 50px;" text="Guardar" textFill="#b90909" />
+            <Button fx:id="btnCancelar" disable="true" layoutX="358.0" layoutY="12.0" mnemonicParsing="false" onAction="#cancelar" style="-fx-background-color: #ffb57e; -fx-background-radius: 50px;" text="Cancelar" textFill="#b90909" />
+            <Hyperlink fx:id="generarInforme" layoutX="624.0" layoutY="13.0" onAction="#reporte" text="Generar Informe" />
          </children>
       </Pane>
    </children>

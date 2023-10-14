@@ -39,6 +39,7 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.converter.IntegerStringConverter;
 import modelo.Detalle_Plato;
+import modelo.Reporte;
 import modelo.plato;
 import modelo.ingredientes;
 /**
@@ -88,7 +89,7 @@ public class platoController implements Initializable {
     ObservableList<ingredientes> registrosIngredientes;
     plato pla = new plato();
     ingredientes ingre = new ingredientes(); 
-    
+    Reporte R = new Reporte();
     ArrayList<plato> plaList = new ArrayList<>();
     ArrayList<ingredientes> ingrelist = new ArrayList<>(); 
     ArrayList<ingredientes> ingreDisponibleList = new ArrayList<>();
@@ -122,13 +123,9 @@ public class platoController implements Initializable {
     @FXML
     private TableView<ingredientes> tableIngredientesDisponibles;
     @FXML
-    private TextField txtCodigoIngre;
+    private Button btnBorrar;
     @FXML
-    private TextField txtNombreIngre;
-    @FXML
-    private TextField txtPrecioIngre;
-    @FXML
-    private TextField txtCantidadIngre;
+    private Button btnAgregarIngredientePlato;
     /**?
      * Initializes the controller class.
      * @param url
@@ -137,6 +134,15 @@ public class platoController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         ingreDisponibleList = ingre.consultar();
+ columCantUtilizadaIngrediente.setEditable(true);
+columCantUtilizadaIngrediente.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+columCantUtilizadaIngrediente.setOnEditCommit(event -> {
+    ingredientes ingrediente = event.getTableView().getItems().get(event.getTablePosition().getRow());
+    //ingrediente.setCant_ingre();
+    columCantUtilizadaIngrediente.setText(Integer.toString(event.getNewValue()));
+    // Aquí puedes realizar otras acciones relacionadas con la edición, si es necesario.
+});
+
         //ingrelist=ingre.consultar();
         cargarDatos();
         cargarDatosIngredientesTabla();
@@ -334,11 +340,11 @@ public class platoController implements Initializable {
         txtCantidad.setDisable(true);
         txtNombre.setDisable(true);
         txtCodigo.setDisable(true);
-        btnAgregarIngredientes.setDisable(true);
     }
 
     @FXML
     private void reporte(ActionEvent event) {
+        R.generarReporte("","reporte");
     }
 
     private void cargarDatos() {
@@ -400,24 +406,24 @@ public class platoController implements Initializable {
         cargarDatosIngredientesTabla();
     }
 
-    private void inAgregarIngredientes(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/Vista/buscarIngrediente.fxml"));
-            Scene scene = new Scene(fxmlLoader.load());
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.setTitle("buscarIngrediente");
-            stage.initModality(Modality.APPLICATION_MODAL);
-            //instanciamos el controlador de buscarCliente
-            buscarIngredienteController buscarControlador = fxmlLoader.getController();
-            //le enviamos el nombre del controlador a recibirDatos que se encuentra en el segundo formulario 
-            buscarControlador.recibirDatos(this);
-            stage.show();//mostramos el segundo formulari
-        } catch (IOException ex) {
-            Logger.getLogger(FacturaController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+//    private void inAgregarIngredientes(ActionEvent event) {
+//        try {
+//            FXMLLoader fxmlLoader = new FXMLLoader();
+//            fxmlLoader.setLocation(getClass().getResource("/Vista/buscarIngrediente.fxml"));
+//            Scene scene = new Scene(fxmlLoader.load());
+//            Stage stage = new Stage();
+//            stage.setScene(scene);
+//            stage.setTitle("buscarIngrediente");
+//            stage.initModality(Modality.APPLICATION_MODAL);
+//            //instanciamos el controlador de buscarCliente
+//            buscarIngredienteController buscarControlador = fxmlLoader.getController();
+//            //le enviamos el nombre del controlador a recibirDatos que se encuentra en el segundo formulario 
+//            buscarControlador.recibirDatos(this);
+//            stage.show();//mostramos el segundo formulari
+//        } catch (IOException ex) {
+//            Logger.getLogger(FacturaController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
 
     
     @FXML
@@ -433,11 +439,22 @@ public class platoController implements Initializable {
     }
     
     public void agregaringrelist(ingredientes ingre1){
-        ingrelist.add(ingre1);
+        //ingrelist.add(ingre1);
+        ingredientes i = new ingredientes();
+        i.setNom_ingre(ingre1.getNom_ingre());
+        i.setCant_ingre(ingre1.getCant_ingre());
+        i.setPrecio_ingre(ingre1.getPrecio_ingre());
+        i.setCod_ingre(ingre1.getCod_ingre());
+        ingrelist.add(i);
     }
     
     public void agregaringreDisponibleList(ingredientes ingre1){
-        ingreDisponibleList.add(ingre1);
+        ingredientes i = new ingredientes();
+        i.setNom_ingre(ingre1.getNom_ingre());
+        i.setCant_ingre(ingre1.getCant_ingre());
+        i.setPrecio_ingre(ingre1.getPrecio_ingre());
+        i.setCod_ingre(ingre1.getCod_ingre());
+        ingreDisponibleList.add(i);
     }
 
     public void quitaringreDisponibleList(ingredientes ingre1){
@@ -455,10 +472,18 @@ public class platoController implements Initializable {
             }
         }
     }
-
+    
     @FXML
     private void seleccionarIngredienteUtilizados(MouseEvent event) {
-        //evento del mouse para seleccionar el registro y cerrar
+        if(tableIngredientesDisponibles.getSelectionModel().getSelectedItem() != null){
+            btnBorrar.setDisable(false);
+        }
+        
+    }
+
+    @FXML
+    private void actionbtnBorrar(ActionEvent event) {
+                //evento del mouse para seleccionar el registro y cerrar
         if(tableIngredientes.getSelectionModel().getSelectedItem() != null){
             ingredientes ingre1 = tableIngredientes.getSelectionModel().getSelectedItem();
             agregaringreDisponibleList(ingre1);
@@ -466,6 +491,10 @@ public class platoController implements Initializable {
             cargarDatosIngredientesTabla();
             cargarDatosIngredientesDisponibles();
         }
+    }
+
+    @FXML
+    private void IngredientesdePlato(ActionEvent event) {
     }
     
     public static ArrayList<ingredientes> removeDuplicates(ArrayList<ingredientes> list) 

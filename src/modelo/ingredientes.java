@@ -19,7 +19,7 @@ import java.util.logging.Logger;
 public class ingredientes extends conexion implements sentencias  {
     private int Cod_ingre, precio_ingre,Cant_ingre;
     private String nom_ingre;    
-
+    private int cantidadUtilizada ;
     public ingredientes(int Cod_ingre, int precio_ingre, int Cant_ingre, String nom_ingre) {
         this.Cod_ingre = Cod_ingre;
         this.precio_ingre = precio_ingre;
@@ -27,6 +27,7 @@ public class ingredientes extends conexion implements sentencias  {
         this.nom_ingre = nom_ingre;
     }
 
+    
     public int getCod_ingre() {
         return Cod_ingre;
     }
@@ -34,7 +35,7 @@ public class ingredientes extends conexion implements sentencias  {
     public void setCod_ingre(int Cod_ingre) {
         this.Cod_ingre = Cod_ingre;
     }
-
+    
     public int getPrecio_ingre() {
         return precio_ingre;
     }
@@ -130,4 +131,5 @@ public class ingredientes extends conexion implements sentencias  {
             return false;
         }
     }
+
 }

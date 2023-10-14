@@ -13,7 +13,7 @@
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="957.0" style="-fx-background-color: #fff5c4;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.clienteController">
     <children>
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
-      <Pane layoutX="38.0" layoutY="33.0" prefHeight="294.0" prefWidth="200.0" style="-fx-border-color: black; -fx-background-color: FEAFB4;">
+      <Pane layoutX="17.0" layoutY="33.0" prefHeight="294.0" prefWidth="221.0" style="-fx-border-color: black; -fx-background-color: white;">
          <children>
             <TextField fx:id="txtCodigo" disable="true" layoutX="26.0" layoutY="24.0" promptText="Código" />
             <TextField fx:id="txtNombre" disable="true" layoutX="26.0" layoutY="60.0" promptText="Nombre" />
@@ -23,7 +23,7 @@
             <TextField fx:id="txtApellido" disable="true" layoutX="26.0" layoutY="94.0" promptText="Apellido" />
          </children>
       </Pane>
-      <Pane layoutX="238.0" layoutY="33.0" prefHeight="294.0" prefWidth="688.0" style="-fx-border-color: black; -fx-background-color: FEAFC3;">
+      <Pane layoutX="238.0" layoutY="33.0" prefHeight="294.0" prefWidth="688.0" style="-fx-border-color: black; -fx-background-color: white;">
          <children>
             <TextField fx:id="Buscar" layoutX="21.0" layoutY="14.0" onKeyReleased="#buscarAlum" promptText="Buscar..." style="-fx-border-color: black; -fx-border-radius: 10;" />
             <TableView fx:id="table" layoutX="21.0" layoutY="80.0" onMouseClicked="#MostrarFilas" prefHeight="200.0" prefWidth="653.0" style="-fx-background-color: FDDFD4;">
@@ -43,7 +43,7 @@
             </Label>
          </children>
       </Pane>
-      <Pane layoutX="38.0" layoutY="334.0" prefHeight="55.0" prefWidth="890.0" style="-fx-border-color: black; -fx-background-color: FFADCD;">
+      <Pane layoutX="18.0" layoutY="334.0" prefHeight="55.0" prefWidth="910.0" style="-fx-border-color: black; -fx-background-color: white;">
          <children>
             <Button fx:id="btnNuevo" layoutX="14.0" layoutY="13.0" mnemonicParsing="false" onAction="#nuevo" text="Nuevo" />
             <Button fx:id="btnModificar" disable="true" layoutX="86.0" layoutY="13.0" mnemonicParsing="false" onAction="#modificar" text="Modificar" />

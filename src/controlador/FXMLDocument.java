@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import java.awt.Image;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,12 +24,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
+import javafx.scene.image.ImageView;
 /**
  *
  * @author hugoi
  */
 public class FXMLDocument implements Initializable {
+    
     
     @FXML
     private Label label;
@@ -43,13 +45,14 @@ public class FXMLDocument implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void ingresar(ActionEvent event) {
           Object evt = event.getSource();
           Node ventana = (Node) event.getSource();
           Stage stage = (Stage) ventana.getScene().getWindow();
+          stage.setResizable(false);
           
          if( contra.getText().equals(contraseña)){
            mostrarVentana("Interfaz","/Vista/menu.fxml");
@@ -73,6 +76,7 @@ public class FXMLDocument implements Initializable {
             stage.setTitle(titulo);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setScene(scene);
+            stage.setResizable(false);
             stage.show();
         }catch (IOException ex){
             Logger.getLogger(FXMLDocument.class.getName()).log(Level.SEVERE,null,ex);
